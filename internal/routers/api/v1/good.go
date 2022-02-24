@@ -1,0 +1,43 @@
+package v1
+
+import (
+	"Opendulum/internal/service"
+	"Opendulum/pkg/convert"
+	"github.com/gin-gonic/gin"
+)
+
+func Pong(c *gin.Context) {
+	c.JSON(200, gin.H{
+		"Msg": "success",
+	})
+}
+
+func Create(ctx *gin.Context) {
+	param := service.CreateGoodRequest{}
+	svc := service.New(ctx.Request.Context())
+	if err := ctx.ShouldBind(&param); err == nil {
+		res := svc.CreateGoodService(&param)
+		ctx.JSON(200, res)
+	} else {
+		ctx.JSON(500, gin.H{
+			"msg":   "fail",
+			"error": err,
+		})
+	}
+}
+
+func GetGood(ctx *gin.Context) {
+	param := service.GetGoodRequest{
+		Brand: convert.StrTo(ctx.Param("brand")).String(),
+	}
+	svc := service.New(ctx.Request.Context())
+	if err := ctx.ShouldBind(&param); err == nil {
+		res := svc.GetGoodService(&param)
+		ctx.JSON(200, res)
+	} else {
+		ctx.JSON(500, gin.H{
+			"msg":   "fail",
+			"error": err,
+		})
+	}
+}
