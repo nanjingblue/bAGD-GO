@@ -5,15 +5,15 @@ import "Opendulum/internal/model"
 type Good struct {
 	ID            uint   `json:"id"`
 	Brand         string `json:"brand"`
-	MapProduction string
-	MapIngredient string
-	MapTrends     string
-	Energy        int32
-	Protein       int32
-	Fat           int32
-	Carbohydrates int32
-	Minerals      int32
-	Other         int32
+	MapProduction string `json:"map_production"`
+	MapIngredient string `json:"map_ingredient"`
+	MapTrends     string `json:"map_trends"`
+	Energy        int32  `json:"energy"`
+	Protein       int32  `json:"protein"`
+	Fat           int32  `json:"fat"`
+	Carbohydrates int32  `json:"carbohydrates"`
+	Minerals      int32  `json:"minerals"`
+	Other         int32  `json:"other"`
 }
 
 func BuildGood(it model.Good) Good {

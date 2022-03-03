@@ -36,6 +36,10 @@ type UpdateGoodRequest struct {
 	Other         int32  `json:"other" form:"other"`
 }
 
+type DeleteGoodRequest struct {
+	Brand string `form:"brand" json:"brand" binding:"required,min=1,max=50"`
+}
+
 func (svc *Service) CreateGoodService(param *CreateGoodRequest) serializer.Response {
 	good := model.Good{
 		Brand:         param.Brand,
@@ -64,21 +68,13 @@ func (svc *Service) CreateGoodService(param *CreateGoodRequest) serializer.Respo
 }
 
 // GetGoodService 根据品牌名 获取商品信息
-func (svc *Service) GetGoodService(param *GetGoodRequest) serializer.Response {
+func (svc *Service) GetGoodService(param *GetGoodRequest) serializer.Good {
 	var good model.Good
 	err := svc.db.Where("brand = ?", param.Brand).First(&good).Error
 	if err != nil {
-		return serializer.Response{
-			Code:  500,
-			Msg:   "internal server error",
-			Error: err.Error(),
-		}
+		panic(err)
 	}
-	return serializer.Response{
-		Code: 200,
-		Msg:  "success",
-		Data: serializer.BuildGood(good),
-	}
+	return serializer.BuildGood(good)
 }
 
 // UpdateGoodService 根据商品 ID 更新good信息
@@ -126,6 +122,23 @@ func (svc *Service) UpdateGoodService(param *UpdateGoodRequest, id string) seria
 	return serializer.Response{
 		Code: 200,
 		Msg:  "update good success",
+		Data: serializer.BuildGood(good),
+	}
+}
+
+func (svc *Service) DeleteGoodService(param *DeleteGoodRequest) serializer.Response {
+	var good model.Good
+	err := svc.db.Where("brand = ?", param.Brand).First(&good).Error
+	if err != nil {
+		return serializer.Response{
+			Code: 500,
+			Msg:  "internal server error",
+		}
+	}
+	svc.db.Delete(&good)
+	return serializer.Response{
+		Code: 200,
+		Msg:  "delete good success",
 		Data: serializer.BuildGood(good),
 	}
 }

@@ -2,7 +2,7 @@ package model
 
 import "github.com/jinzhu/gorm"
 
-// Ingredient 成分
+// Good 商品具体信息
 type Good struct {
 	gorm.Model
 	Brand         string `gorm:"type:varchar(50);unique"`

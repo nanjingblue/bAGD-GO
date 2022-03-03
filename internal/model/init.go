@@ -37,6 +37,6 @@ func SetupDBEngine() error {
 	if err != nil {
 		return err
 	}
-	_ = global.DBEngine.AutoMigrate(&Good{})
+	_ = global.DBEngine.AutoMigrate(&Good{}) // 自动化更新
 	return nil
 }

@@ -53,3 +53,19 @@ func Update(ctx *gin.Context) {
 		})
 	}
 }
+
+func Delete(ctx *gin.Context) {
+	param := service.DeleteGoodRequest{
+		Brand: convert.StrTo(ctx.Param("brand")).String(),
+	}
+	svc := service.New(ctx.Request.Context())
+	if err := ctx.ShouldBind(&param); err == nil {
+		res := svc.DeleteGoodService(&param)
+		ctx.JSON(200, res)
+	} else {
+		ctx.JSON(400, gin.H{
+			"msg":   "fail",
+			"error": err,
+		})
+	}
+}
