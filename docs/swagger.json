@@ -1,0 +1,163 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "基于AR的商品信息展示系统",
+        "title": "基于AR的商品信息展示系统",
+        "termsOfService": "https://github.com/0pendulum/bAGD-GO",
+        "contact": {},
+        "license": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/v1/good": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "新增商品",
+                "parameters": [
+                    {
+                        "minLength": 1,
+                        "description": "品牌名称",
+                        "name": "brand",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "minLength": 1,
+                        "description": "产地分布图",
+                        "name": "map_production",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "配料比例图",
+                        "name": "map_Ingredient",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "品牌销量趋势图",
+                        "name": "map_trends",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "能量值",
+                        "name": "energy",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "蛋白质",
+                        "name": "protein",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "脂肪",
+                        "name": "fat",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "碳水化合物",
+                        "name": "carbohydrates",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "矿物质",
+                        "name": "minerals",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "其他",
+                        "name": "other",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/model.Good"
+                        }
+                    },
+                    "400": {
+                        "description": "请求错误"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.Good": {
+            "type": "object",
+            "properties": {
+                "brand": {
+                    "type": "string"
+                },
+                "carbohydrates": {
+                    "description": "碳水化合物",
+                    "type": "integer"
+                },
+                "energy": {
+                    "description": "能量",
+                    "type": "integer"
+                },
+                "fat": {
+                    "description": "脂肪",
+                    "type": "integer"
+                },
+                "mapIngredient": {
+                    "description": "配料表",
+                    "type": "string"
+                },
+                "mapProduction": {
+                    "description": "产地图",
+                    "type": "string"
+                },
+                "mapTrends": {
+                    "description": "品牌趋势",
+                    "type": "string"
+                },
+                "minerals": {
+                    "description": "矿物质",
+                    "type": "integer"
+                },
+                "other": {
+                    "description": "其他",
+                    "type": "integer"
+                },
+                "protein": {
+                    "description": "蛋白质",
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

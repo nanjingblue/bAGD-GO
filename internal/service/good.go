@@ -16,6 +16,7 @@ type CreateGoodRequest struct {
 	Carbohydrates int32  `json:"carbohydrates" form:"carbohydrates"`
 	Minerals      int32  `json:"minerals" form:"minerals"`
 	Other         int32  `json:"other" form:"other"`
+	VideoURL      string `json:"video_url" form:"video_url"`
 }
 
 type GetGoodRequest struct {
@@ -34,6 +35,7 @@ type UpdateGoodRequest struct {
 	Carbohydrates int32  `json:"carbohydrates" form:"carbohydrates"`
 	Minerals      int32  `json:"minerals" form:"minerals"`
 	Other         int32  `json:"other" form:"other"`
+	VideoURL      string `json:"video_url" form:"video_url"`
 }
 
 type DeleteGoodRequest struct {
@@ -52,6 +54,7 @@ func (svc *Service) CreateGoodService(param *CreateGoodRequest) serializer.Respo
 		Carbohydrates: param.Carbohydrates,
 		Minerals:      param.Minerals,
 		Other:         param.Other,
+		VideoURL:      param.VideoURL,
 	}
 	err := svc.db.Create(&good).Error
 	if err != nil {
@@ -118,6 +121,9 @@ func (svc *Service) UpdateGoodService(param *UpdateGoodRequest, id string) seria
 	if param.Other != 0 {
 		good.Other = param.Other
 	}
+	if param.VideoURL != "" {
+		good.VideoURL = param.VideoURL
+	}
 	svc.db.Save(&good)
 	return serializer.Response{
 		Code: 200,
@@ -126,6 +132,7 @@ func (svc *Service) UpdateGoodService(param *UpdateGoodRequest, id string) seria
 	}
 }
 
+// DeleteGoodService 根据商品品牌删除商品
 func (svc *Service) DeleteGoodService(param *DeleteGoodRequest) serializer.Response {
 	var good model.Good
 	err := svc.db.Where("brand = ?", param.Brand).First(&good).Error

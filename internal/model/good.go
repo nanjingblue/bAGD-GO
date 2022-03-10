@@ -15,4 +15,5 @@ type Good struct {
 	Carbohydrates int32  // 碳水化合物
 	Minerals      int32  // 矿物质
 	Other         int32  // 其他
+	VideoURL      string // 商品广告视频
 }

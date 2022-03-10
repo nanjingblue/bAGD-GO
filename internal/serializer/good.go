@@ -14,6 +14,7 @@ type Good struct {
 	Carbohydrates int32  `json:"carbohydrates"`
 	Minerals      int32  `json:"minerals"`
 	Other         int32  `json:"other"`
+	VideoURL      string `json:"video_url"`
 }
 
 func BuildGood(it model.Good) Good {
@@ -29,5 +30,6 @@ func BuildGood(it model.Good) Good {
 		Carbohydrates: it.Carbohydrates,
 		Minerals:      it.Minerals,
 		Other:         it.Other,
+		VideoURL:      it.VideoURL,
 	}
 }

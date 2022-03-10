@@ -1,0 +1,108 @@
+definitions:
+  model.Good:
+    properties:
+      brand:
+        type: string
+      carbohydrates:
+        description: 碳水化合物
+        type: integer
+      energy:
+        description: 能量
+        type: integer
+      fat:
+        description: 脂肪
+        type: integer
+      mapIngredient:
+        description: 配料表
+        type: string
+      mapProduction:
+        description: 产地图
+        type: string
+      mapTrends:
+        description: 品牌趋势
+        type: string
+      minerals:
+        description: 矿物质
+        type: integer
+      other:
+        description: 其他
+        type: integer
+      protein:
+        description: 蛋白质
+        type: integer
+    type: object
+info:
+  contact: {}
+  description: 基于AR的商品信息展示系统
+  license: {}
+  termsOfService: https://github.com/0pendulum/bAGD-GO
+  title: 基于AR的商品信息展示系统
+  version: "1.0"
+paths:
+  /api/v1/good:
+    post:
+      parameters:
+      - description: 品牌名称
+        in: body
+        minLength: 1
+        name: brand
+        required: true
+        schema:
+          type: string
+      - description: 产地分布图
+        in: body
+        minLength: 1
+        name: map_production
+        schema:
+          type: string
+      - description: 配料比例图
+        in: body
+        name: map_Ingredient
+        schema:
+          type: string
+      - description: 品牌销量趋势图
+        in: body
+        name: map_trends
+        schema:
+          type: string
+      - description: 能量值
+        in: body
+        name: energy
+        schema:
+          type: integer
+      - description: 蛋白质
+        in: body
+        name: protein
+        schema:
+          type: integer
+      - description: 脂肪
+        in: body
+        name: fat
+        schema:
+          type: integer
+      - description: 碳水化合物
+        in: body
+        name: carbohydrates
+        schema:
+          type: integer
+      - description: 矿物质
+        in: body
+        name: minerals
+        schema:
+          type: integer
+      - description: 其他
+        in: body
+        name: other
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/model.Good'
+        "400":
+          description: 请求错误
+      summary: 新增商品
+swagger: "2.0"
