@@ -17,12 +17,13 @@ func (svc *Service) GetCommentsService(param *GetCommentsRequest) serializer.Res
 		return serializer.Response{
 			Code: 200,
 			Data: comments,
-			Msg:  "get json ok",
+			Msg:  "get comments list success",
 		}
 	}
 	return serializer.Response{
 		Code: 500,
 		Data: gin.H{
+
 			"url": jd.Url,
 		},
 		Msg: "get json fail",

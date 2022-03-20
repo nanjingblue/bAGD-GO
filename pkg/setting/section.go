@@ -24,8 +24,6 @@ type DatabaseSettings struct {
 
 type CrawlerSettings struct {
 	UserAgent          string
-	Cookie             string
-	Referer            string
 	JingDongCommentUrl string
 }
 

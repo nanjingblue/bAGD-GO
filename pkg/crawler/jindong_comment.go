@@ -30,8 +30,6 @@ func NewJingDongCommentsRes(id string) *JinDongCommentsRes {
 	}
 	header := map[string]string{
 		"user-agent": global.CrawlerSetting.UserAgent,
-		"cookie":     global.CrawlerSetting.Cookie,
-		"referer":    global.CrawlerSetting.Referer,
 	}
 	url := fmt.Sprintf("%s&productId=%s&score=%s&sortType=%s&page=%s&pageSize=%s&isShadowSku=%s&fold=%s",
 		global.CrawlerSetting.JingDongCommentUrl,

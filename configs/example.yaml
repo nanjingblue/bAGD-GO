@@ -1,0 +1,21 @@
+Server:
+  RunMode: debug
+  HttpPort: 8000
+  ReadTimeOut: 60
+  WriteTimeOut: 60
+
+Database:
+  DBType: mysql
+  Username:
+  Password:
+  Host: 127.0.0.1:3306
+  DBName:
+  TablePrefix:
+  Charset: utf8mb4
+  ParseTime: True
+  MaxIdleConns: 10
+  MaxOpenConns: 30
+
+crawler:
+  UserAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36
+  JingDongCommentUrl: https://club.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98
