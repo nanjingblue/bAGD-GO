@@ -25,7 +25,7 @@ func Pong(c *gin.Context) {
 // @Success 200 {object} model.Good "成功"
 // @Failure 400 "请求错误"
 // @Router /api/v1/good [post]
-func Create(ctx *gin.Context) {
+func CreateGood(ctx *gin.Context) {
 	param := service.CreateGoodRequest{}
 	svc := service.New(ctx.Request.Context())
 	if err := ctx.ShouldBind(&param); err == nil {
@@ -55,7 +55,7 @@ func GetGood(ctx *gin.Context) {
 	}
 }
 
-func Update(ctx *gin.Context) {
+func UpdateGood(ctx *gin.Context) {
 	param := service.UpdateGoodRequest{}
 	svc := service.New(ctx.Request.Context())
 	if err := ctx.ShouldBind(&param); err == nil {
@@ -69,7 +69,7 @@ func Update(ctx *gin.Context) {
 	}
 }
 
-func Delete(ctx *gin.Context) {
+func DeleteGood(ctx *gin.Context) {
 	param := service.DeleteGoodRequest{
 		Brand: convert.StrTo(ctx.Param("brand")).String(),
 	}

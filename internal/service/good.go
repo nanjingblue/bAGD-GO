@@ -60,7 +60,7 @@ func (svc *Service) CreateGoodService(param *CreateGoodRequest) serializer.Respo
 	if err != nil {
 		return serializer.Response{
 			Code: 500,
-			Msg:  "internal server error",
+			Msg:  err.Error(),
 		}
 	}
 	return serializer.Response{
@@ -87,7 +87,7 @@ func (svc *Service) UpdateGoodService(param *UpdateGoodRequest, id string) seria
 	if err != nil {
 		return serializer.Response{
 			Code:  500,
-			Msg:   "internal server error",
+			Msg:   err.Error(),
 			Error: err.Error(),
 		}
 	}
@@ -139,7 +139,7 @@ func (svc *Service) DeleteGoodService(param *DeleteGoodRequest) serializer.Respo
 	if err != nil {
 		return serializer.Response{
 			Code: 500,
-			Msg:  "internal server error",
+			Msg:  err.Error(),
 		}
 	}
 	svc.db.Delete(&good)

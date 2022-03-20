@@ -17,12 +17,15 @@ func NewRouter() *gin.Engine {
 	apiv1 := r.Group("/api/v1")
 	{
 		apiv1.GET("/ping", v1.Pong)
-		apiv1.POST("/good", v1.Create)
+		apiv1.POST("/good", v1.CreateGood)
 		apiv1.GET("/good/:brand", v1.GetGood)
-		apiv1.PUT("/good/:id", v1.Update)
-		apiv1.DELETE("/good/:brand", v1.Delete)
+		apiv1.PUT("/good/:id", v1.UpdateGood)
+		apiv1.DELETE("/good/:brand", v1.DeleteGood)
 
 		apiv1.GET("/comments/:product_id", v1.GetComments)
+
+		apiv1.POST("/jdgood", v1.CreateJD)
+		apiv1.PUT("/jdgood", v1.UPdateJD)
 	}
 	return r
 }

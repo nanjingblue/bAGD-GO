@@ -11,13 +11,13 @@ import (
 	"strings"
 )
 
-type JinDongCommentsRes struct {
+type JingDongCommentsRes struct {
 	Url    string
 	Header map[string]string
 	Params map[string]string
 }
 
-func NewJingDongCommentsRes(id string) *JinDongCommentsRes {
+func NewJingDongCommentsRes(id string) *JingDongCommentsRes {
 	params := map[string]string{
 		"productId":   id,
 		"score":       "0",
@@ -40,11 +40,11 @@ func NewJingDongCommentsRes(id string) *JinDongCommentsRes {
 		params["pageSize"],
 		params["isShadowSku"],
 		params["fold"])
-	return &JinDongCommentsRes{Url: url, Header: header, Params: params}
+	return &JingDongCommentsRes{Url: url, Header: header, Params: params}
 }
 
 // Fetch 默认获取产品的前10条评论 想要获取跟多可以修改 NewJingDongCommentsRes 中的 page & pageSize 参数
-func (t *JinDongCommentsRes) Fetch() []string {
+func (t *JingDongCommentsRes) Fetch() []string {
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", t.Url, nil)
 
