@@ -8,5 +8,6 @@ import (
 var (
 	ServerSetting   *setting.ServerSettingS
 	DatabaseSetting *setting.DatabaseSettings
+	CrawlerSetting  *setting.CrawlerSettings
 	DBEngine        *gorm.DB
 )

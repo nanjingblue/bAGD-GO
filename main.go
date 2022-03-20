@@ -53,5 +53,10 @@ func setupSetting() interface{} {
 	if err != nil {
 		return err
 	}
+
+	err = s.ReadSection("Crawler", &global.CrawlerSetting)
+	if err != nil {
+		return err
+	}
 	return nil
 }
