@@ -84,3 +84,19 @@ func DeleteGood(ctx *gin.Context) {
 		})
 	}
 }
+
+func GetGoodComments(ctx *gin.Context) {
+	param := service.GetGoodCommentsRequest{
+		Brand: convert.StrTo(ctx.Param("brand")).String(),
+	}
+	svc := service.New(ctx.Request.Context())
+	if err := ctx.ShouldBind(&param); err == nil {
+		res := svc.GetGoodCommentsService(&param)
+		ctx.JSON(200, res)
+	} else {
+		ctx.JSON(400, gin.H{
+			"error": err.Error(),
+			"msg":   "fail",
+		})
+	}
+}

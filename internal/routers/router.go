@@ -21,6 +21,7 @@ func NewRouter() *gin.Engine {
 		apiv1.GET("/good/:brand", v1.GetGood)
 		apiv1.PUT("/good/:id", v1.UpdateGood)
 		apiv1.DELETE("/good/:brand", v1.DeleteGood)
+		apiv1.GET("/good/comments/:brand", v1.GetGoodComments)
 
 		apiv1.GET("/comments/:product_id", v1.GetComments)
 

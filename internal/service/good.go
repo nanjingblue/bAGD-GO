@@ -3,6 +3,7 @@ package service
 import (
 	"Opendulum/internal/model"
 	"Opendulum/internal/serializer"
+	"Opendulum/pkg/crawler"
 )
 
 type CreateGoodRequest struct {
@@ -39,6 +40,10 @@ type UpdateGoodRequest struct {
 }
 
 type DeleteGoodRequest struct {
+	Brand string `form:"brand" json:"brand" binding:"required,min=1,max=50"`
+}
+
+type GetGoodCommentsRequest struct {
 	Brand string `form:"brand" json:"brand" binding:"required,min=1,max=50"`
 }
 
@@ -147,5 +152,31 @@ func (svc *Service) DeleteGoodService(param *DeleteGoodRequest) serializer.Respo
 		Code: 200,
 		Msg:  "delete good success",
 		Data: serializer.BuildGood(good),
+	}
+}
+
+func (svc *Service) GetGoodCommentsService(param *GetGoodCommentsRequest) serializer.Response {
+	var good model.GoodJingDong
+	err := svc.db.Where("brand = ?", param.Brand).First(&good).Error
+	if err != nil {
+		return serializer.Response{
+			Code:  500,
+			Error: err.Error(),
+		}
+	}
+	productId := good.JDId
+	jd := crawler.NewJingDongCommentsRes(productId)
+	comment := jd.Fetch()
+	if comment != nil {
+		return serializer.Response{
+			Code: 200,
+			Data: comment,
+			Msg:  "get comments success",
+		}
+	} else {
+		return serializer.Response{
+			Code: 500,
+			Msg:  "no comments",
+		}
 	}
 }
