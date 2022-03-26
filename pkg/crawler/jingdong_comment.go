@@ -67,7 +67,7 @@ func (t *JingDongCommentsRes) Fetch() []string {
 		return nil
 	}
 	// Parse
-	bodyStr := strings.Replace(string(body), "\n", " ", -1)    // 替换 "\n"
+	bodyStr := strings.Replace(string(body), "\\n", "", -1)    // 替换 "\n"
 	bodyStr = mahonia.NewDecoder("gbk").ConvertString(bodyStr) // 转码中文
 
 	bodyStr = strings.TrimPrefix(strings.TrimSuffix(bodyStr, ");"), "fetchJSON_comment98(")
