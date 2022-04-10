@@ -25,6 +25,7 @@ type DatabaseSettings struct {
 type CrawlerSettings struct {
 	UserAgent          string
 	JingDongCommentUrl string
+	JingDongGoodsHtml  string
 }
 
 func (s *Setting) ReadSection(k string, v interface{}) error {

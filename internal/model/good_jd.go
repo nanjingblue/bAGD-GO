@@ -7,8 +7,10 @@ import (
 
 type GoodJingDong struct {
 	gorm.Model
-	Brand string `gorm:"type:varchar(50);unique"`
-	JDId  string
+	Brand         string `gorm:"type:varchar(50);unique"`
+	JDId          string
+	Concentration string // 净含量
+	ShelfLife     string // 保质期
 }
 
 // GetJDId 由brand从数据库中获取JDId
