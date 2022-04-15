@@ -9,6 +9,8 @@ type Good struct {
 	MapProduction string // 产地图
 	MapIngredient string // 配料表
 	MapTrends     string // 品牌趋势
+	
+	//ShelfLife     string // 保质期
 	Energy        int32  // 能量
 	Protein       int32  // 蛋白质
 	Fat           int32  // 脂肪
